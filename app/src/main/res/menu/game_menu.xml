@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/createNew"
+        android:title="Create new User" ></item>
+    <item android:title="Group by" >
+        <menu >
+            <item android:id="@+id/orderBy_new"
+                android:title="Name" />
+            <item android:id="@+id/orderBy_distance"
+                android:title="Distance" />
+        </menu>
+    </item>
+</menu>

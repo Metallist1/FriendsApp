@@ -1,4 +1,4 @@
-package com.example.myfriendsapp.BE;
+package com.example.myfriendsapp.GUI.Extra;
 
 import android.content.Context;
 import android.view.LayoutInflater;
