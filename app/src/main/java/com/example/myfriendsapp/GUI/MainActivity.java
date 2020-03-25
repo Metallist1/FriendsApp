@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.myfriendsapp.BLL.BLLManager;
+import com.example.myfriendsapp.BLL.IBLLManager;
 import com.example.myfriendsapp.GUI.Extra.CustomAdapter;
 import com.example.myfriendsapp.BE.Friend;
 import com.example.myfriendsapp.DAL.DalManager;
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView friendListViewas;
     private List<Friend> friendList;
-    private IDalManager dalManager;
+    private IBLLManager bllManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        dalManager = new DalManager(this);
+        bllManager = new BLLManager(this);
         setUpInitialList();
 
     }
@@ -63,11 +65,11 @@ public class MainActivity extends AppCompatActivity {
 
     //Version 2 of this method will switch from temp data to real data
     private List<Friend> setUpFriendList(){
-        return dalManager.getAllFriends();
+        return bllManager.getAllFriends();
     }
 
     private void setUpNewDetails(){
-        Intent myIntent = new Intent(this, DetailsActivity.class); //Create intent
+        Intent myIntent = new Intent(this, EditDetailsActivity.class); //Create intent
         startActivityForResult(myIntent, 0); //Wait for results
     }
 

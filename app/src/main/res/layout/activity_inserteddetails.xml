@@ -13,18 +13,18 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="23dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="25px"
             android:layout_weight="0.1"
             android:text="Name :" />
 
-        <EditText
-            android:id="@+id/edit_name"
-            android:layout_width="500px"
+        <TextView
+            android:id="@+id/txt_name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName" />
+            android:layout_weight="0.1"
+            android:text="TextView" />
 
     </LinearLayout>
 
@@ -39,23 +39,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.1"
             android:text="Address" />
 
-        <EditText
-            android:id="@+id/edit_address"
+        <TextView
+            android:id="@+id/txt_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName" />
-
-        <Button
-            android:id="@+id/btn_home"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Home" />
+            android:text="TextView" />
 
         <Button
             android:id="@+id/btn_show"
@@ -77,16 +69,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.1"
             android:text="Phone :" />
 
-        <EditText
-            android:id="@+id/edit_phone"
+        <TextView
+            android:id="@+id/txt_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
-            android:inputType="phone" />
+            android:text="TextView" />
 
         <Button
             android:id="@+id/btn_call"
@@ -96,11 +87,11 @@
             android:text="Call" />
 
         <Button
-            android:id="@+id/btn_msg"
+            android:id="@+id/btn_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Message" />
+            android:text="Text" />
 
     </LinearLayout>
 
@@ -115,16 +106,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.1"
             android:text="Mail : " />
 
-        <EditText
-            android:id="@+id/edit_email"
+        <TextView
+            android:id="@+id/txt_mail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textEmailAddress" />
+            android:text="TextView" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -141,13 +132,13 @@
             android:layout_weight="1"
             android:text="Birthday:" />
 
-        <EditText
-            android:id="@+id/edit_birthday"
+        <TextView
+            android:id="@+id/txt_birthday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
-            android:inputType="date" />
+            android:text="TextView" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -164,13 +155,13 @@
             android:layout_weight="1"
             android:text="Web:" />
 
-        <EditText
-            android:id="@+id/edit_link"
+        <TextView
+            android:id="@+id/txt_web"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName" />
+            android:text="TextView" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -204,11 +195,11 @@
             android:text="Delete" />
 
         <Button
-            android:id="@+id/btn_save"
+            android:id="@+id/btn_update"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Save" />
+            android:text="Update" />
     </LinearLayout>
 
 </LinearLayout>
