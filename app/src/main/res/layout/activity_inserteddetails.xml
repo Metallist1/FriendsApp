@@ -77,14 +77,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:autoLink="phone"
+            android:clickable="true"
             android:text="TextView" />
-
-        <Button
-            android:id="@+id/btn_call"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Call" />
 
         <Button
             android:id="@+id/btn_text"
@@ -114,7 +109,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:text="TextView"
+            android:autoLink="email" />
 
     </LinearLayout>
 
@@ -160,7 +156,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:text="TextView"
+            android:autoLink="web" />
 
     </LinearLayout>
 

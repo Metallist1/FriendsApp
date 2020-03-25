@@ -18,7 +18,7 @@ public class FriendDAO {
         List<Friend> newFriendList = new ArrayList<>();
         for(int x = 0; x < 20; x++){
             String name = "Nedas";
-            String phone= "+459191";
+            String phone= "59191";
             String mail= "nedas";
             String birthday= "1999/07/01";
             String web= "www.wikipedia.com/";
@@ -30,7 +30,7 @@ public class FriendDAO {
                 mail= mail+"a";
                 web = web +"a";
             }
-            mail = mail + ".com";
+            mail = mail + "@gmail.com";
 
 
             String uri = "@drawable/profile1";
