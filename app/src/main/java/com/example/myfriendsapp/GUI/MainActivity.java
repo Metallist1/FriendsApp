@@ -2,8 +2,10 @@ package com.example.myfriendsapp.GUI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -11,22 +13,21 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.myfriendsapp.BE.FriendList;
 import com.example.myfriendsapp.BLL.BLLManager;
 import com.example.myfriendsapp.BLL.IBLLManager;
 import com.example.myfriendsapp.GUI.Extra.CustomAdapter;
 import com.example.myfriendsapp.BE.Friend;
-import com.example.myfriendsapp.DAL.DalManager;
-import com.example.myfriendsapp.DAL.IDalManager;
 import com.example.myfriendsapp.R;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
 
-    private ListView friendListViewas;
-    private List<Friend> friendList;
+    private ListView friendListView;
     private IBLLManager bllManager;
 
     @Override
@@ -36,35 +37,35 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         bllManager = new BLLManager(this);
+        bllManager.populateDb();
         setUpInitialList();
+
+        System.out.println("xDDD");
 
     }
 
     private void setUpInitialList(){
-        friendListViewas = (ListView)findViewById(R.id.friendListView);
+        friendListView = findViewById(R.id.friendListView);
 
-        friendList = setUpFriendList();
+        System.out.println(setUpFriendList().size());
 
-        CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), friendList);
-        friendListViewas.setAdapter(customAdapter);
 
-        friendListViewas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        CustomAdapter customAdapter = new CustomAdapter(getApplicationContext());
+        friendListView.setAdapter(customAdapter);
+
+        friendListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-
-
-                Intent myIntent = new Intent(arg0.getContext(), DetailsActivity.class); //Create intent
-                Friend fren = friendList.get(position);
-
-                myIntent.putExtra("UserToDisplay",  (Serializable)fren); //Add Extra info
-                startActivityForResult(myIntent, 0); //Wait for results
+                Intent myIntent = new Intent(arg0.getContext(), DetailsActivity.class);
+                myIntent.putExtra("UserToDisplay", FriendList.list.get(position));
+                startActivityForResult(myIntent, 0);
             }
         });
     }
 
-    //Version 2 of this method will switch from temp data to real data
-    private List<Friend> setUpFriendList(){
+     public List<Friend> setUpFriendList(){
+        FriendList.list = new ArrayList<>();
         return bllManager.getAllFriends();
     }
 
@@ -78,6 +79,20 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.game_menu, menu);
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0) {
+            if(resultCode == Activity.RESULT_OK){
+                System.out.println("ResultOK");
+                setUpInitialList();
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
     }
 
     @Override

@@ -33,8 +33,19 @@ import java.io.Serializable;
 
 public class EditDetailsActivity extends Activity {
 
-    private Friend frend;
-    private IBLLManager bllManager;
+    Friend friend = null;
+    IBLLManager bllManager;
+    AppLocationService appLocationService;
+    EditText nameText;
+    EditText addressText;
+    EditText birthdayText;
+    EditText emailText;
+    EditText phoneText;
+    EditText linkText;
+    ImageView icon;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +55,16 @@ public class EditDetailsActivity extends Activity {
                 this);
         ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
 
+        nameText = findViewById(R.id.edit_name);
+        addressText = findViewById(R.id.edit_address);
+        birthdayText = findViewById(R.id.edit_birthday);
+        emailText = findViewById(R.id.edit_email);
+        phoneText = findViewById(R.id.edit_phone);
+        linkText = findViewById(R.id.edit_link);
+        icon = findViewById(R.id.profilePicture);
 
         if(getIntent().getExtras()!=null){
+            friend = (Friend) getIntent().getSerializableExtra("UserToDisplay");
             setUpText();
         }
         setUpButtons();
@@ -54,25 +73,19 @@ public class EditDetailsActivity extends Activity {
 
 
     private void setUpText(){
-        frend = (Friend)getIntent().getSerializableExtra("UserToDisplay");
-
-        ((EditText)findViewById(R.id.edit_name)).setText(frend.getName());
-        ((EditText)findViewById(R.id.edit_address)).setText(frend.getAddress());
-        ((EditText)findViewById(R.id.edit_birthday)).setText(frend.getBirthday());
-        ((EditText)findViewById(R.id.edit_email)).setText(frend.getMail());
-        ((EditText)findViewById(R.id.edit_phone)).setText(frend.getPhone());
-        ((EditText)findViewById(R.id.edit_link)).setText(frend.getWeb());
-        ImageView icon = (ImageView) findViewById(R.id.profilePicture);
+        nameText.setText(friend.getName());
+        addressText.setText(friend.getAddress());
+        birthdayText.setText(friend.getBirthday());
+        emailText.setText(friend.getMail());
+        phoneText.setText(friend.getPhone());
+        linkText.setText(friend.getWeb());
         icon.setLayoutParams(new LinearLayout.LayoutParams(200, 200));
-        icon.setImageResource(frend.getProfilePicture());
+        icon.setImageResource(friend.getProfilePicture());
     }
-    AppLocationService appLocationService;
     private void setUpButtons(){
         findViewById(R.id.btn_home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 Location location = appLocationService
                         .getLocation(LocationManager.GPS_PROVIDER);
                 if (location != null) {
@@ -88,8 +101,20 @@ public class EditDetailsActivity extends Activity {
         findViewById(R.id.btn_save).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              // bllManager.addFriend()
+                if(friend == null)
+                 bllManager.addFriend(nameText.getText().toString(), addressText.getText().toString(), phoneText.getText().toString(), emailText.getText().toString(), birthdayText.getText().toString(), linkText.getText().toString(), 0);
+                else{
+                    friend.setName(nameText.getText().toString());
+                    friend.setAddress(addressText.getText().toString());
+                    friend.setPhone(phoneText.getText().toString());
+                    friend.setMail(emailText.getText().toString());
+                    friend.setBirthday(birthdayText.getText().toString());
+                    friend.setWeb(linkText.getText().toString());
+                    bllManager.updateFriend(friend);
+                }
+                setResult(Activity.RESULT_OK, new Intent());
                 finish();
+
             }
         });
     }

@@ -3,6 +3,7 @@ package com.example.myfriendsapp.BLL;
 import android.content.Context;
 
 import com.example.myfriendsapp.BE.Friend;
+import com.example.myfriendsapp.BE.FriendList;
 import com.example.myfriendsapp.DAL.DalManager;
 import com.example.myfriendsapp.DAL.IDalManager;
 
@@ -17,24 +18,32 @@ public class BLLManager implements IBLLManager {
         this.context = current;
         dalManager = new DalManager(context);
     }
+    @Override
+    public void populateDb(){
+       dalManager.populateDb();
+    }
+
 
     @Override
     public List<Friend> getAllFriends() {
-        return dalManager.getAllFriends();
+        FriendList.list = dalManager.getAllFriends();
+        return FriendList.list;
     }
+
+
 
     @Override
     public Friend addFriend(String name, String address, String phone, String mail, String birthday, String web, int profilePicture) {
-        return dalManager.addFriend(name,address,phone,mail,birthday,web,profilePicture);
+        return dalManager.addFriend(new Friend(name, address, phone, mail, birthday, web, profilePicture));
     }
 
     @Override
-    public Friend deleteFriend(Friend friendToDelete) {
-        return dalManager.deleteFriend(friendToDelete);
+    public void deleteFriend(Friend friendToDelete) {
+         dalManager.deleteFriend(friendToDelete);
     }
 
     @Override
-    public Friend updateFriend(Friend friendToUpdate) {
-        return dalManager.deleteFriend(friendToUpdate);
+    public int updateFriend(Friend friendToUpdate) {
+         return dalManager.updateFriend(friendToUpdate);
     }
 }

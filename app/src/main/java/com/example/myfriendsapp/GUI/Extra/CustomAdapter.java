@@ -1,6 +1,7 @@
 package com.example.myfriendsapp.GUI.Extra;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,19 +11,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.myfriendsapp.BE.Friend;
+import com.example.myfriendsapp.BE.FriendList;
 import com.example.myfriendsapp.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CustomAdapter extends BaseAdapter {
-    Context context;
-    List<Friend> friendList = new ArrayList<>();
-    LayoutInflater inflter;
+    private Context context;
+    private List<Friend> friendList;
+    private LayoutInflater inflter;
 
-    public CustomAdapter(Context applicationContext, List<Friend> friendList) {
+    public CustomAdapter(Context applicationContext) {
         this.context = applicationContext;
-        this.friendList = friendList;
+        this.friendList = FriendList.list;
         inflter = (LayoutInflater.from(applicationContext));
     }
 
@@ -46,18 +48,18 @@ public class CustomAdapter extends BaseAdapter {
         try {
 
             convertView = inflter.inflate(R.layout.activity_listview, null);
-            TextView name = (TextView) convertView.findViewById(R.id.nameText);
-            TextView location = (TextView) convertView.findViewById(R.id.locationText);
-            ImageView icon = (ImageView) convertView.findViewById(R.id.profileView);
+            TextView name = convertView.findViewById(R.id.nameText);
+            TextView location = convertView.findViewById(R.id.locationText);
+            ImageView icon = convertView.findViewById(R.id.profileView);
 
 
             name.setText(friendList.get(position).getName());
-
             location.setText(friendList.get(position).getAddress());
-
             icon.setLayoutParams(new LinearLayout.LayoutParams(200, 200));
             icon.setImageResource(friendList.get(position).getProfilePicture());
+
             return convertView;
+
         } catch (Exception ex) {
             return null;
         }

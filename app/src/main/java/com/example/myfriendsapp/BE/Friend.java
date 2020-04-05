@@ -3,6 +3,7 @@ import java.io.Serializable;
 
 
 public class Friend  implements Serializable{
+    private long id;
     private  String name;
     private  String address;
     private  String phone;
@@ -10,6 +11,14 @@ public class Friend  implements Serializable{
     private  String birthday;
     private  String web;
     private  int profilePicture;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -67,6 +76,16 @@ public class Friend  implements Serializable{
         this.profilePicture = profilePicture;
     }
 
+    public Friend(Long id, String name, String address, String phone, String mail, String birthday, String web, int profilePicture) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+        this.mail = mail;
+        this.birthday = birthday;
+        this.web = web;
+        this.profilePicture = profilePicture;
+    }
     public Friend(String name, String address, String phone, String mail, String birthday, String web, int profilePicture) {
         this.name = name;
         this.address = address;
@@ -76,4 +95,5 @@ public class Friend  implements Serializable{
         this.web = web;
         this.profilePicture = profilePicture;
     }
+
 }

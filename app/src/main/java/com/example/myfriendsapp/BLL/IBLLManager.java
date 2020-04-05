@@ -10,7 +10,10 @@ public interface IBLLManager {
 
     public Friend addFriend(String name, String address, String phone, String mail, String birthday, String web, int profilePicture);
 
-    public Friend deleteFriend(Friend friendToDelete);
+    public void deleteFriend(Friend friendToDelete);
 
-    public Friend updateFriend(Friend friendToUpdate);
+    public int updateFriend(Friend friendToUpdate);
+
+    public void populateDb();
+
 }
